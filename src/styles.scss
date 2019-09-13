@@ -1,0 +1,14 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import "./assets/styles/typography";
+@import "./assets/styles/buttons";
+@import "./assets/styles/breakpoints";
+@import "./assets/styles/helpers";
+@import "./assets/styles/variables";
+@import "./assets/styles/containers";
+
+
+* {
+   margin: 0;
+   padding: 0;
+}
+
