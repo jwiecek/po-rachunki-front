@@ -1,0 +1,19 @@
+<div #target></div>
+
+<div *ngIf="bills.length; else noItem">
+  <app-bill-item *ngFor="let bill of bills; trackBy: trackById" [bill]="bill" [elementsView]="elementsView | async"
+                 (removeBill)="removeBill($event)"></app-bill-item>
+</div>
+
+<div fxLayout="row" fxLayoutAlign="center none" *ngIf="bills.length > 5">
+  <button mat-icon-button (click)="scroll(target)">
+    <mat-icon>keyboard_arrow_up</mat-icon><br>
+    na górę
+  </button>
+</div>
+
+<ng-template #noItem>
+  <div class="no-result-container">
+    brak rachunków
+  </div>
+</ng-template>

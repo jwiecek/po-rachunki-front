@@ -1,4 +1,13 @@
 button {
-  height: 52px;
+  min-height: 52px;
   min-width: fit-content;
+
+  &:hover {
+    filter: brightness(80%);
+  }
+}
+
+.accent-button {
+  background: #24a29a;
+  color: #fff;
 }

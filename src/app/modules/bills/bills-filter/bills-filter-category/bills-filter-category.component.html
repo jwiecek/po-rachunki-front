@@ -1,0 +1,15 @@
+<mat-accordion>
+  <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+      <h3>Kategoria</h3>
+    </mat-expansion-panel-header>
+    <div *ngFor="let category of categoryList" class="checkbox-list">
+      <mat-checkbox class="my-checkbox"
+                    (change)="setCategory()"
+                    [(ngModel)]="category.selected"
+                    color="primary">{{category.label}}
+      </mat-checkbox>
+      <mat-divider></mat-divider>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

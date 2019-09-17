@@ -1,13 +1,13 @@
-<div fxFlexFill fxLayout="column" style="padding: 5px">
-  <div fxFlex="none" style="border:2px solid black;">
+<div fxFlexFill fxLayout="column" class="page-wrapper">
+  <header fxFlex="none">
     <app-header></app-header>
-  </div>
+  </header>
 
-  <div fxFlex style="border:2px solid black;">
+  <main fxFlex>
     <router-outlet></router-outlet>
-  </div>
+  </main>
 
-  <div fxFlex="none" style="border:2px solid black;">
+  <footer fxFlex="none" style="background: grey">
     <app-footer></app-footer>
-  </div>
+  </footer>
 </div>

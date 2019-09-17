@@ -485,3 +485,11 @@
 .pull-right {
   margin-left: auto;
 }
+
+.clickable-item {
+  cursor: pointer;
+}
+.input-box mat-form-field{
+  width: 90px;
+  padding-right: 20px
+}

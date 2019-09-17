@@ -1,0 +1,37 @@
+<mat-card>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="column" fxLayoutAlign="center center" class="date-box">
+      <h2>{{bill.purchaseDate | date: 'd'}} {{bill.purchaseDate | date: 'MMM'}}</h2>
+      <p>{{bill.purchaseDate | date: 'yyyy'}}</p>
+    </div>
+    <div fxFlex *ngIf="!bill.expand">
+      <h2>{{bill.product}} {{bill.brand}}</h2>
+      <p><mat-icon>payment</mat-icon>{{bill.price}} zł</p>
+      <p *ngIf="elementsView.shop"><mat-icon>home</mat-icon>{{bill.shop}}</p>
+      <p *ngIf="elementsView.description"><mat-icon>description</mat-icon>{{bill.description}}</p>
+      <p *ngIf="elementsView.warrantyEndDate || (filter | async).selectedWarranty"
+         [ngStyle]="{'color':checkIfWarrantyOneMonth(bill) ? '#ff8a80' : 'none'}">
+        <mat-icon>restore</mat-icon>do {{bill.warrantyEndDate | date: 'dd.MM.yyyy'}}</p>
+      <p *ngIf="elementsView.purchaseType"><mat-icon>category</mat-icon>{{bill.purchaseType}}</p>
+    </div>
+    <div *ngIf="bill.expand || !isMobile" fxLayout="row" fxLayoutAlign="end center" class="action-button-box">
+      <button type="button" mat-button color="primary" (click)="showBillPhoto(bill.imageBillPath)">
+        <mat-icon>photo_camera</mat-icon><br><span>zdjęcie</span>
+      </button>
+      <button type="button" mat-button color="primary" (click)="editBill(bill)">
+        <mat-icon>edit</mat-icon><br><span>edytuj</span>
+      </button>
+      <button type="button" mat-button color="primary" (click)="removeSelectedBill(bill._id)">
+        <mat-icon>cancel</mat-icon><br><span>usuń</span>
+      </button>
+    </div>
+    <div *ngIf="isMobile" class="action-box" (click)="expandPanel(bill)">
+      <div *ngIf="!bill.expand" fxLayout="column" fxLayoutAlign="center center">
+        <mat-icon class="clickable-item">chevron_right</mat-icon>
+      </div>
+      <div *ngIf="bill.expand" fxLayout="column" fxLayoutAlign="center center">
+        <mat-icon class="clickable-item">chevron_left</mat-icon>
+      </div>
+    </div>
+  </div>
+</mat-card>

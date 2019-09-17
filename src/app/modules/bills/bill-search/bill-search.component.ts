@@ -1,9 +1,9 @@
 import { Component, ElementRef, EventEmitter, HostListener, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
-import { BillService } from '../bill.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
-import { FilterInterface } from '../interfaces/filter.interface';
+import { FilterInterface } from '../../../shared/models/interfaces/filter.interface';
+import { TagsService } from '../../../core/services/tags.service';
 
 @Component({
   selector: 'app-bill-search',
@@ -11,7 +11,7 @@ import { FilterInterface } from '../interfaces/filter.interface';
   styleUrls: ['./bill-search.component.scss']
 })
 export class BillSearchComponent implements OnInit, OnDestroy {
-  constructor(private billService: BillService) {}
+  constructor(private tagsService: TagsService) {}
 
   public value;
   public searchOptions = [];
@@ -19,7 +19,7 @@ export class BillSearchComponent implements OnInit, OnDestroy {
   private search: string;
   private searchIdList;
   @Output() filterBills = new EventEmitter<void>();
-  @ViewChild('searchRef') searchRef: ElementRef;
+  @ViewChild('searchRef', {static: true}) searchRef: ElementRef;
   private filter: FilterInterface;
   private subscriptions: Subscription = new Subscription();
   public isMobile: boolean;
@@ -39,7 +39,7 @@ export class BillSearchComponent implements OnInit, OnDestroy {
       .subscribe((text: string) => this.showSearchOption(text), error => console.warn('err: ' + error));
 
     this.subscriptions.add(
-      this.billService.currentFilter.subscribe((filter: FilterInterface) => {
+      this.tagsService.currentFilter.subscribe((filter: FilterInterface) => {
         setTimeout(() => {
           this.filter = filter;
         }, 1000);
@@ -50,7 +50,7 @@ export class BillSearchComponent implements OnInit, OnDestroy {
   showSearchOption(text: string): void {
     if (text.length > 1) {
       this.search = text;
-      this.billService.filterBill(this.search).subscribe(
+      this.tagsService.filterBill(this.search).subscribe(
         res => {
           this.searchOptions = res;
         },
@@ -64,7 +64,7 @@ export class BillSearchComponent implements OnInit, OnDestroy {
   clearSearchInput() {
     this.searchOptions = [];
     this.filter.searchIdList = [];
-    this.billService.filter.next(this.filter);
+    this.tagsService.filter.next(this.filter);
     this.filterBills.emit();
   }
 
@@ -73,7 +73,7 @@ export class BillSearchComponent implements OnInit, OnDestroy {
     if (this.searchOptions) {
       this.searchIdList = this.searchOptions.reduce((arr, option) => option.idList, []);
       this.filter.searchIdList = this.searchIdList;
-      this.billService.filter.next(this.filter);
+      this.tagsService.filter.next(this.filter);
     }
     this.filterBills.emit();
   }

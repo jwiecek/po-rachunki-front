@@ -1,0 +1,25 @@
+@import "../../../../../assets/styles/variables";
+
+.date-box {
+  text-align: center;
+  width: 70px;
+  border-right: 1px solid #c5c9cc;
+  margin-right: 10px;
+  margin-left: -15px;
+  min-width: 70px;
+}
+
+mat-card {
+  margin: 5px;
+
+  .mat-icon {
+    top: 6px;
+    position: relative;
+    color: $primary-color;
+    margin-right: 5px;
+  }
+
+  h2, p {
+    margin: 1px;
+  }
+}

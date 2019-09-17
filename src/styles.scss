@@ -1,4 +1,5 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import "./assets/styles/theme";
 @import "./assets/styles/typography";
 @import "./assets/styles/buttons";
 @import "./assets/styles/breakpoints";
@@ -6,9 +7,20 @@
 @import "./assets/styles/variables";
 @import "./assets/styles/containers";
 
-
-* {
-   margin: 0;
-   padding: 0;
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: $background-color;
+  color: $font-color;
 }
 
+.logo {
+  color: #7c4dff;
+  text-decoration: none;
+  font-family: 'Baloo Chettan', cursive;
+  font-size: 38px;
+  span {
+    font-family: 'Sue Ellen Francisco', cursive;
+  }
+}

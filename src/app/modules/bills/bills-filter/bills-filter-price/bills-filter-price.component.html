@@ -1,0 +1,19 @@
+<mat-accordion>
+  <mat-expansion-panel [expanded]="!isMobile">
+    <mat-expansion-panel-header>
+      <h3>Data zakupu</h3>
+    </mat-expansion-panel-header>
+    <form [formGroup]="dateForm" fxLayout="row" class="input-box">
+      <mat-form-field>
+        <input matInput [matDatepicker]="pickerFrom" placeholder="od" formControlName="fromDate" (dateChange)="setRange('fromDate')">
+        <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #pickerFrom></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field >
+        <input matInput [matDatepicker]="pickerTo" placeholder="do" formControlName="toDate" (dateChange)="setRange('toDate')">
+        <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #pickerTo></mat-datepicker>
+      </mat-form-field>
+    </form>
+  </mat-expansion-panel>
+</mat-accordion>

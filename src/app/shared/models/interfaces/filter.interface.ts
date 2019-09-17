@@ -1,5 +1,6 @@
 import * as moment from 'moment';
-import { Tag } from '../../tag/interfaces/tag.interface';
+import { Tag } from './tag.interface';
+
 
 export interface FilterInterface {
   selectedWarranty: string;

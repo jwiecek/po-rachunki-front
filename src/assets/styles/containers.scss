@@ -1,0 +1,17 @@
+@import "variables";
+@import "breakpoints";
+
+.basic-container {
+  padding: 0 35px;
+}
+
+@media only screen and (max-width: $xl) {
+  .basic-container {
+    padding: 0 25px;
+  }
+}
+
+.no-result-container {
+  text-align: center;
+  margin-top: 100px;
+}

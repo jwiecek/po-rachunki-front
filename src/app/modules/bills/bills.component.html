@@ -1,0 +1,20 @@
+<div fxLayout="column">
+  <div fxLayout="row" fxFill>
+    <div class="filter-container">
+      <app-bills-filter></app-bills-filter>
+    </div>
+    <div fxLayout="column" fxFlex>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <button mat-stroked-button class="accent-button" routerLink="/create">
+          <mat-icon>add_circle</mat-icon>
+          Dodaj rachunek
+        </button>
+        <app-bill-search></app-bill-search>
+      </div>
+      <div>zaznaczone filtry</div>
+      <div>
+        <app-bills-list></app-bills-list>
+      </div>
+    </div>
+  </div>
+</div>
