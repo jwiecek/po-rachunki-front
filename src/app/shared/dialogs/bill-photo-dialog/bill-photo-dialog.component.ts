@@ -1,7 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { environment } from '../../../../environments/environment';
-
 
 @Component({
   selector: 'app-bill-photo-dialog',
@@ -17,6 +15,6 @@ export class BillPhotoDialogComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.url = `${environment.API_URL}/bills/${this.data.urlPhoto}`;
+    this.url = this.data.urlPhoto;
   }
 }

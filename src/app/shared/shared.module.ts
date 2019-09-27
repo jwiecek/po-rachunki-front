@@ -4,6 +4,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 import { BillPhotoDialogComponent } from './dialogs/bill-photo-dialog/bill-photo-dialog.component';
+import { InputChipComponent } from './components/input-chip/input-chip.component';
+import { CommonModule } from '@angular/common';
 
 const modules = [
   FormsModule,
@@ -14,13 +16,16 @@ const modules = [
 
 @NgModule({
   declarations: [
-    BillPhotoDialogComponent
+    BillPhotoDialogComponent,
+    InputChipComponent
   ],
   imports: [
-    ...modules
+    ...modules,
+    CommonModule
   ],
   exports: [
-    ...modules
+    ...modules,
+    InputChipComponent
   ],
   entryComponents: [BillPhotoDialogComponent],
 })

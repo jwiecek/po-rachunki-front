@@ -36,9 +36,9 @@ export class BillsFilterWarrantyComponent implements OnInit {
     }
     this.filters.selectedWarranty = option;
 
-    const today = moment();
-    const todayPlusOneMonth = moment(today).add(1, 'months');
-    const todayPlusOneYear = moment(today).add(1, 'year');
+    const today = moment().format('MM-DD-YYYY');
+    const todayPlusOneMonth = moment(today).add(1, 'months').format('MM-DD-YYYY');
+    const todayPlusOneYear = moment(today).add(1, 'year').format('MM-DD-YYYY');
 
     if (this.filters.selectedWarranty === WarrantyOptionsEnum.OVERDUE) {
       this.filters.warrantyTo = today;
@@ -52,8 +52,8 @@ export class BillsFilterWarrantyComponent implements OnInit {
       this.filters.warrantyTo = todayPlusOneYear;
     }
     if (this.filters.selectedWarranty === WarrantyOptionsEnum.RANGE) {
-      this.filters.warrantyFrom = moment(this.filters.warrantyFrom);
-      this.filters.warrantyTo = moment(this.filters.warrantyTo);
+      this.filters.warrantyFrom = moment(this.filters.warrantyFrom).format('MM-DD-YYYY');
+      this.filters.warrantyTo = moment(this.filters.warrantyTo).format('MM-DD-YYYY');
     }
     this.tagsService.filter.next(this.filters);
   }

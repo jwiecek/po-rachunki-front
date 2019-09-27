@@ -1,18 +1,17 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
 import { Bill } from '../../../../shared/models/interfaces/bill.interface';
 import * as moment from 'moment';
 import { FilterInterface } from '../../../../shared/models/interfaces/filter.interface';
 import { Observable } from 'rxjs';
 import { Router} from '@angular/router';
-import { BillPhotoDialogComponent } from '../../../../shared/dialogs/bill-photo-dialog/bill-photo-dialog.component';
 import { MatDialog } from '@angular/material';
 import { TagsService } from '../../../../core/services/tags.service';
+import { BillsService } from '../../../../core/services/bills.service';
 
 @Component({
   selector: 'app-bill-item',
   templateUrl: './bill-item.component.html',
   styleUrls: ['./bill-item.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BillItemComponent implements OnInit {
 
@@ -26,7 +25,7 @@ export class BillItemComponent implements OnInit {
   private todayPlusOneYear;
   public filter: Observable<FilterInterface>;
 
-  constructor(private tagsService: TagsService, private router: Router, public dialog: MatDialog) { }
+  constructor(private tagsService: TagsService, private billsService: BillsService, private router: Router, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.onResize();
@@ -41,32 +40,22 @@ export class BillItemComponent implements OnInit {
   }
 
   getDates() {
-    this.today = moment();
-    this.todayPlusOneMonth = moment(this.today).add(1, 'months');
-    this.todayPlusOneYear = moment(this.today).add(1, 'year');
+    this.today = moment().format('MM-DD-YYYY');
+    this.todayPlusOneMonth = moment(this.today).add(1, 'months').format('MM-DD-YYYY');
+    this.todayPlusOneYear = moment(this.today).add(1, 'year').format('MM-DD-YYYY');
   }
 
   checkIfWarrantyOneMonth(bill: Bill): boolean {
-    return moment(bill.warrantyEndDate) > this.today && moment(bill.warrantyEndDate) < this.todayPlusOneMonth;
+    return moment(bill.warrantyEndDate).format('MM-DD-YYYY') > this.today && moment(bill.warrantyEndDate)
+      .format('MM-DD-YYYY') < this.todayPlusOneMonth;
   }
 
-  expandPanel(bill: Bill): void {
-    this.bill.expand = !bill.expand;
-  }
-
-  showBillPhoto(url): void {
-    const dialogWidth = this.isMobile ? '100vw' : '350px';
-    this.dialog.open(BillPhotoDialogComponent, {
-      width: dialogWidth,
-      data: { urlPhoto: url }
-    });
-  }
-
-  editBill(bill) {
+  editBill(bill: Bill) {
     this.router.navigate(['./edit/', bill._id]);
   }
 
-  removeSelectedBill(id) {
+  removeSelectedBill(event: MouseEvent, id: string) {
+    event.stopPropagation();
     if (id) {
       this.removeBill.emit(id);
     }

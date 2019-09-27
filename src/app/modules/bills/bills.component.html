@@ -1,20 +1,17 @@
-<div fxLayout="column">
+<section fxLayout="column" class="bills__container">
+  <div fxLayout="row" fxLayoutAlign="start center" class="bills__header">
+    <h1>Moje rachunki ({{resultCount | async}})</h1>
+    <button *ngIf="!isMobile"  mat-stroked-button class="accent-button" routerLink="/create">
+      <mat-icon>add_circle</mat-icon>
+      Dodaj rachunek
+    </button>
+  </div>
   <div fxLayout="row" fxFill>
-    <div class="filter-container">
+    <div class="bills__filter" *ngIf="!isMobile">
       <app-bills-filter></app-bills-filter>
     </div>
-    <div fxLayout="column" fxFlex>
-      <div fxLayout="row" fxLayoutAlign="space-between center">
-        <button mat-stroked-button class="accent-button" routerLink="/create">
-          <mat-icon>add_circle</mat-icon>
-          Dodaj rachunek
-        </button>
-        <app-bill-search></app-bill-search>
-      </div>
-      <div>zaznaczone filtry</div>
-      <div>
-        <app-bills-list></app-bills-list>
-      </div>
+    <div fxFlex="">
+      <app-bills-list></app-bills-list>
     </div>
   </div>
-</div>
+</section>

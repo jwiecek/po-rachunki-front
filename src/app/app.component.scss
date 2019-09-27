@@ -1,16 +1,17 @@
-header {
-  position: fixed;
-  top: 0;
-  z-index: 10;
-  width: 100%;
-}
+.main {
+  &__container {
+    min-height: 100vh !important;
+    overflow: auto;
 
-main {
-  position: relative;
-  top: 64px;
-}
+    header {
+      position: fixed;
+      top: 0;
+      z-index: 10;
+      width: 100%;
+    }
 
-.page-wrapper {
-  min-height: 100vh !important;
-  overflow: auto;
+    main {
+      margin-top: 64px;
+    }
+  }
 }

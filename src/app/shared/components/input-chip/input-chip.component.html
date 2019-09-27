@@ -1,0 +1,52 @@
+<div *ngIf="catType; else noCatType">
+  <h2>{{category}}</h2>
+  <div *ngFor="let cTag of tagsByType; let i = index;">
+    <p>{{cTag.label}}</p>
+    <mat-form-field>
+      <mat-chip-list #purchaseTypeList aria-label="Tag selection">
+        <mat-chip *ngFor="let tag of catType[i]" [selectable]="selectable"
+                  [removable]="removable" (removed)="removeTag(tag)">
+          {{tag.label}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        <input [matChipInputFor]="purchaseTypeList"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="addOnBlur"
+               (matChipInputTokenEnd)="addTag($event, i)">
+      </mat-chip-list>
+    </mat-form-field>
+  </div>
+</div>
+
+<ng-template #noCatType>
+  <h2>{{category}}</h2>
+  <ng-content></ng-content>
+  <div>
+    <mat-form-field>
+      <mat-chip-list #purchaseTypeList [multiple]="true" aria-label="Tag selection">
+
+        <div *ngIf="removable; else noRemovable">
+          <mat-chip *ngFor="let tag of tagsByType" [selectable]="selectable"
+                    [removable]="removable" (removed)="removeTag(tag)">
+            {{tag.label}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+
+          </mat-chip>
+        </div>
+        <ng-template #noRemovable>
+          <mat-chip *ngFor="let tag of tagsByType"
+                    (click)="selectTag(tag);" [selectable]="selectable" [selected]="tag.selected"
+                    [ngClass]="{'selected-tag': tag.selected, '': tag.selected}">
+            {{tag.label}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+        </ng-template>
+
+        <input [matChipInputFor]="purchaseTypeList"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="addOnBlur"
+               (matChipInputTokenEnd)="addTag($event, 'xxx')">
+      </mat-chip-list>
+    </mat-form-field>
+  </div>
+</ng-template>

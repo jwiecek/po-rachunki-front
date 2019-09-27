@@ -4,7 +4,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { AuthGuard } from './modules/auth/auth.guard';
 import { BillsComponent } from './modules/bills/bills.component';
 import { BillsAddEditComponent } from './modules/bills-add-edit/bills-add-edit.component';
-import { TagsComponent } from './modules/tags/tags-list/tags.component';
+import { TagsComponent } from './modules/tags/tags.component';
 
 const routes: Routes = [
   { path: '', component: BillsComponent, canActivate: [AuthGuard], data: { title: 'Lista' } },

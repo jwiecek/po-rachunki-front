@@ -1,9 +1,9 @@
-import {Component, HostListener, OnInit} from '@angular/core';
-import {AuthService} from '../services/auth.service';
-import {Observable} from 'rxjs';
-import {FilterInterface} from '../../shared/models/interfaces/filter.interface';
-import {WarrantyOptionsEnum} from '../../shared/models/enums/warranty-option.enum';
-import {TagsService} from '../services/tags.service';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+import { Observable } from 'rxjs';
+import { FilterInterface } from '../../shared/models/interfaces/filter.interface';
+import { WarrantyOptionsEnum } from '../../shared/models/enums/warranty-option.enum';
+import { TagsService } from '../services/tags.service';
 
 @Component({
   selector: 'app-header',
@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.onResize();
     this.userIsAuthenticated = this.authService.getAuthStatusListener();
+    this.tagsService.filter.subscribe(filter => this.filter = filter);
   }
 
   refresh(): void {

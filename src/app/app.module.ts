@@ -11,9 +11,9 @@ import { FooterComponent } from './core/footer/footer.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthModule } from './modules/auth/auth.module';
 import { BillsComponent } from './modules/bills/bills.component';
-import { TagsComponent } from './modules/tags/tags-list/tags.component';
+import { TagsComponent } from './modules/tags/tags.component';
 import { BillsListComponent } from './modules/bills/bills-list/bills-list.component';
-import { TagsListComponent } from './modules/tags/tags-list.component';
+import { TagsListComponent } from './modules/tags/tags-list/tags-list.component';
 import { BillSearchComponent} from './modules/bills/bill-search/bill-search.component';
 import { AuthGuard } from './modules/auth/auth.guard';
 import { AuthInterceptor } from './modules/auth/auth-interceptor';
@@ -25,7 +25,11 @@ import { BillsFilterPriceComponent } from './modules/bills/bills-filter/bills-fi
 import { BillsFilterDateComponent } from './modules/bills/bills-filter/bills-filter-date/bills-filter-date.component';
 import { BillsFilterWarrantyComponent } from './modules/bills/bills-filter/bills-filter-warranty/bills-filter-warranty.component';
 import { BillsShowOnListComponent } from './modules/bills/bills-show-on-list/bills-show-on-list.component';
-import {MatDividerModule, MatListModule, MatRadioModule} from '@angular/material';
+import { BillWarrantyComponent } from './modules/bills-add-edit/bill-warranty/bill-warranty.component';
+import { BillImageComponent } from './modules/bills-add-edit/bill-image/bill-image.component';
+import {ToolbarComponent} from './modules/bills/bills-filter/toolbar/toolbar.component';
+import {FilterDialogComponent} from './modules/bills/bills-filter/filter-dialog/filter-dialog.component';
+import { BillsFilterSelectedListComponent } from './modules/bills/bills-filter/bills-filter-selected-list/bills-filter-selected-list.component';
 
 registerLocaleData(pl);
 
@@ -46,7 +50,12 @@ registerLocaleData(pl);
     BillsFilterPriceComponent,
     BillsFilterDateComponent,
     BillsFilterWarrantyComponent,
-    BillsShowOnListComponent
+    BillsShowOnListComponent,
+    BillWarrantyComponent,
+    BillImageComponent,
+    ToolbarComponent,
+    FilterDialogComponent,
+    BillsFilterSelectedListComponent
   ],
   imports: [
     BrowserModule,
@@ -57,10 +66,15 @@ registerLocaleData(pl);
     AuthModule
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'pl' },
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    {provide: LOCALE_ID, useValue: 'pl'},
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     AuthGuard
   ],
+  exports: [
+    BillsFilterComponent,
+    FilterDialogComponent
+  ],
+  entryComponents: [FilterDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

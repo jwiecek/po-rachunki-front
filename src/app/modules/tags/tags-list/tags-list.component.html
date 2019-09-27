@@ -1,0 +1,8 @@
+<app-input-chip [category]="'Kategoria'" [tagsByType]="tagsPurchaseType" [tagType]="'purchaseType'" [catType]="''"
+                (addNewTag)="addTag($event)" (removeSelectedTag)="removeTag($event)" [removable]="'true'"></app-input-chip>
+<app-input-chip [category]="'Produkty'" [tagsByType]="tagsPurchaseType" [tagType]="'product'" [catType]="tagsProduct"
+                (addNewTag)="addTag($event)" (removeSelectedTag)="removeTag($event)" [removable]="'true'"></app-input-chip>
+<app-input-chip [category]="'Sklepy'" [tagsByType]="tagsPurchaseType" [tagType]="'shop'" [catType]="tagsShop"
+                (addNewTag)="addTag($event)" (removeSelectedTag)="removeTag($event)" [removable]="'true'"></app-input-chip>
+<app-input-chip [category]="'Marka'" [tagsByType]="tagsPurchaseType" [tagType]="'brand'" [catType]="tagsBrand"
+                (addNewTag)="addTag($event)" (removeSelectedTag)="removeTag($event)" [removable]="'true'"></app-input-chip>

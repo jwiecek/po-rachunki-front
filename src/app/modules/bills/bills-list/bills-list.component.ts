@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { BillsService } from '../../../core/services/bills.service';
 import { Bill } from '../../../shared/models/interfaces/bill.interface';
 import { Subscription } from 'rxjs';
 import { FilterInterface } from '../../../shared/models/interfaces/filter.interface';
 import { TagsService } from '../../../core/services/tags.service';
+import { Tag } from '../../../shared/models/interfaces/tag.interface';
 
 @Component({
   selector: 'app-bills-list',
@@ -16,10 +17,13 @@ export class BillsListComponent implements OnInit {
   public elementsView;
   private subscriptions: Subscription = new Subscription();
   private filters: FilterInterface;
+  public isMobile: boolean;
+  public selectedCategory: Tag[];
 
   constructor(private billsService: BillsService, private tagsService: TagsService) { }
 
   ngOnInit() {
+    this.onResize();
     this.getBills();
     this.subscriptions.add(this.tagsService.currentFilter.subscribe((filters: FilterInterface) => {
       this.filters = filters;
@@ -37,7 +41,7 @@ export class BillsListComponent implements OnInit {
     );
   }
 
-  filterBills() {
+  filterBills(): void {
     const filterObject = {
       selectedCategory: this.filters.categoryList.filter(category => category.selected === true).map(c => c.label),
       selectedPriceFrom: this.filters.selectedPriceFrom,
@@ -48,6 +52,8 @@ export class BillsListComponent implements OnInit {
       warrantyDateTo: this.filters.warrantyTo,
       searchIdList: this.filters.searchIdList
     };
+
+    this.selectedCategory = this.filters.categoryList.filter(category => category.selected === true);
 
     this.billsService.filterAll(filterObject).subscribe(res => {
       this.bills = res;
@@ -69,7 +75,13 @@ export class BillsListComponent implements OnInit {
     );
   }
 
-  trackById(index: number, bill: Bill) {
+  trackById(index: number, bill: Bill): string {
     return bill._id;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    const innerWidth = window.innerWidth;
+    this.isMobile = innerWidth < 600;
   }
 }

@@ -1,19 +1,22 @@
-<div #target></div>
+<section class="bill-list__container">
+  <div #target></div>
+  <app-bills-filter-selected-list [filter]="filters" [selectedCategoryList]="selectedCategory" (getByFilter)="filterBills()"></app-bills-filter-selected-list>
 
-<div *ngIf="bills.length; else noItem">
-  <app-bill-item *ngFor="let bill of bills; trackBy: trackById" [bill]="bill" [elementsView]="elementsView | async"
-                 (removeBill)="removeBill($event)"></app-bill-item>
-</div>
-
-<div fxLayout="row" fxLayoutAlign="center none" *ngIf="bills.length > 5">
-  <button mat-icon-button (click)="scroll(target)">
-    <mat-icon>keyboard_arrow_up</mat-icon><br>
-    na górę
-  </button>
-</div>
-
-<ng-template #noItem>
-  <div class="no-result-container">
-    brak rachunków
+  <div *ngIf="bills.length; else noItem">
+    <app-bill-item *ngFor="let bill of bills; trackBy: trackById" [bill]="bill" [elementsView]="elementsView | async"
+                   (removeBill)="removeBill($event)"></app-bill-item>
   </div>
-</ng-template>
+  <div fxLayout="row" fxLayoutAlign="center none" *ngIf="bills.length > 5" class="bill-list__to-top">
+    <button mat-icon-button (click)="scroll(target)">
+      <mat-icon>keyboard_arrow_up</mat-icon><br>
+      na górę
+    </button>
+  </div>
+  <ng-template #noItem>
+    <div class="bill-list__no-result-container">
+      brak rachunków
+    </div>
+  </ng-template>
+  <app-toolbar *ngIf="isMobile" (onViewByWarranty)="filterBills()"></app-toolbar>
+</section>
+

@@ -1,5 +1,5 @@
 <mat-card>
-  <div fxLayout="row" fxLayoutAlign="space-between center">
+  <div fxLayout="row" fxLayoutAlign="space-between center" (click)="editBill(bill);">
     <div fxLayout="column" fxLayoutAlign="center center" class="date-box">
       <h2>{{bill.purchaseDate | date: 'd'}} {{bill.purchaseDate | date: 'MMM'}}</h2>
       <p>{{bill.purchaseDate | date: 'yyyy'}}</p>
@@ -15,23 +15,9 @@
       <p *ngIf="elementsView.purchaseType"><mat-icon>category</mat-icon>{{bill.purchaseType}}</p>
     </div>
     <div *ngIf="bill.expand || !isMobile" fxLayout="row" fxLayoutAlign="end center" class="action-button-box">
-      <button type="button" mat-button color="primary" (click)="showBillPhoto(bill.imageBillPath)">
-        <mat-icon>photo_camera</mat-icon><br><span>zdjęcie</span>
-      </button>
-      <button type="button" mat-button color="primary" (click)="editBill(bill)">
-        <mat-icon>edit</mat-icon><br><span>edytuj</span>
-      </button>
-      <button type="button" mat-button color="primary" (click)="removeSelectedBill(bill._id)">
+      <button type="button" mat-button color="primary" (click)="removeSelectedBill($event, bill._id);">
         <mat-icon>cancel</mat-icon><br><span>usuń</span>
       </button>
-    </div>
-    <div *ngIf="isMobile" class="action-box" (click)="expandPanel(bill)">
-      <div *ngIf="!bill.expand" fxLayout="column" fxLayoutAlign="center center">
-        <mat-icon class="clickable-item">chevron_right</mat-icon>
-      </div>
-      <div *ngIf="bill.expand" fxLayout="column" fxLayoutAlign="center center">
-        <mat-icon class="clickable-item">chevron_left</mat-icon>
-      </div>
     </div>
   </div>
 </mat-card>

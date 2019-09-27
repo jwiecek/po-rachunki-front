@@ -1,1 +1,79 @@
-<p>bills-add-edit works!</p>
+<section class="card__container basic__container">
+  <div class="card__header">
+    <h1 class="card__title">
+      <mat-icon class="clickable-item" routerLink="/">chevron_left</mat-icon>
+      {{headerName}} <span class="primary__text">{{selectedProducts}} {{selectedBrands}}</span>
+    </h1>
+  </div>
+  <form [formGroup]="billForm" novalidate (submit)="onSaveBill()">
+
+  <div class="card__body" fxLayout="row" fxLayout.lt-sm="column">
+
+    <div class="pr-20 card__image">
+      <app-bill-image (imagePathEmit)="getImage($event)" [selectedBillPhotoUrl]="selectedBillPhotoUrl"></app-bill-image>
+    </div>
+
+    <div class="pr-20 card__data">
+      <div fxLayout="row" fxLayout.lt-sm="column">
+        <div>
+          <h2>Data zakupu</h2>
+          <div>
+            <mat-form-field class="short-input">
+              <input matInput [max]="maxDate"
+                     [matDatepicker]="picker"
+                     placeholder="Data zakupu"
+                     formControlName="purchaseDate">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker touchUi #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+        <div>
+          <h2>Kwota</h2>
+          <div>
+            <mat-form-field class="short-input">
+              <input matInput placeholder="wpisz kwotę" type="number" formControlName="price">
+              <span matSuffix>zł</span>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFill>
+          <app-bill-warranty (selectedWarranty)="selectedWarranty($event)" [selectedWarrantyMonth]="selectedWarrantyMonth"></app-bill-warranty>
+        </div>
+      </div>
+        <app-input-chip [category]="'Kategoria produktu'" [tagsByType]="tagsPurchaseType" [tagType]="'purchaseType'"
+                        [catType]="''"
+                        (addNewTag)="addTag($event, false)" (getSelectedTag)="selectTag($event, false)">
+        </app-input-chip>
+        <app-input-chip [category]="'Produkt'" [tagsByType]="tagsProductByType || tagsProduct" [tagType]="'product'"
+                        [catType]="''"
+                        (addNewTag)="addTag($event, true)" (getSelectedTag)="selectTag($event, true)">
+          <span>(możesz wybrać kilka)</span>
+        </app-input-chip>
+        <app-input-chip [category]="'Marka'" [tagsByType]="tagsBrandByType || tagsBrand" [tagType]="'brand'"
+                        [catType]="''"
+                        (addNewTag)="addTag($event, true)" (getSelectedTag)="selectTag($event, true)">
+          <span>(możesz wybrać kilka)</span>
+        </app-input-chip>
+        <app-input-chip [category]="'Sklep'" [tagsByType]="tagsShopByType || tagsShop" [tagType]="'shop'"
+                        [catType]="''"
+                        (addNewTag)="addTag($event, true)" (getSelectedTag)="selectTag($event, true)">
+          <span>(możesz wybrać kilka)</span>
+        </app-input-chip>
+
+        <h2>Opis <span>(niewymagane)</span></h2>
+        <div>
+          <mat-form-field>
+            <textarea matInput placeholder="wpisz opis" formControlName="description" rows="2"></textarea>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+          <button type="submit" mat-flat-button color="primary">
+            Dodaj paragon
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>
