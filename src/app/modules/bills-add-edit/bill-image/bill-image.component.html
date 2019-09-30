@@ -1,0 +1,19 @@
+<section class="image__container">
+<!--  <h2>Wybierz zdjęcie </h2>-->
+
+  <div class="image__body">
+    <div *ngIf="!imagePreview && selectedBillPhotoUrl" class="image__body--selectable">
+      <img [src]="selectedBillPhotoUrl" alt="rachunek" (click)="showBillPhoto()">
+    </div>
+    <div *ngIf="imagePreview !== '' && imagePreview && imagePath">
+      <img [src]="imagePreview" alt="bill">
+    </div>
+  </div>
+
+  <div>
+    <button [ngClass]="{'no-image-button': (!imagePreview && !selectedBillPhotoUrl)}" mat-stroked-button type="button"
+            (click)="filePicker.click()">wybierz zdjęcie paragonu</button>
+    <input type="file" #filePicker (change)="onImagePicked($event)">
+  </div>
+</section>
+

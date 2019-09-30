@@ -1,12 +1,11 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TagsService } from '../../../../core/services/tags.service';
-import {FilterInterface} from '../../../../shared/models/interfaces/filter.interface';
+import { FilterInterface } from '../../../../shared/models/interfaces/filter.interface';
 
 @Component({
   selector: 'app-bills-filter-category',
   templateUrl: './bills-filter-category.component.html',
   styleUrls: ['./bills-filter-category.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BillsFilterCategoryComponent {
 

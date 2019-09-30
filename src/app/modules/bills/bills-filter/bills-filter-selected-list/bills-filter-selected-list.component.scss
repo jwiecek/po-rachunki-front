@@ -1,0 +1,25 @@
+.filter-list {
+
+  &__container {
+    background: #ffffff;
+    padding: 5px 15px;
+    margin: 5px;
+  }
+
+  &__filter-list__chip {
+    width: max-content;
+    height: 50px;
+    span{
+      font-size: 11px;
+      margin-left: 10px;
+    }
+    button {
+      min-width: 43px;
+      max-width: 70px;
+    }
+
+    span.mat-checkbox-label {
+      padding: 5px 0;
+    }
+  }
+}

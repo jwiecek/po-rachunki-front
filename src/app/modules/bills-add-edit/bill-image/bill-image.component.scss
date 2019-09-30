@@ -1,0 +1,19 @@
+.image {
+
+  &__body img {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  &__body--selectable {
+    cursor: pointer;
+  }
+}
+
+input[type="file"] {
+  visibility: hidden;
+}
+
+.no-image-button {
+  height: 300px;
+}

@@ -4,8 +4,8 @@ import { FilterInterface } from '../../../shared/models/interfaces/filter.interf
 import { BillsService } from '../../../core/services/bills.service';
 import { Tag } from '../../../shared/models/interfaces/tag.interface';
 import { TagsService } from '../../../core/services/tags.service';
-import {MatBottomSheetRef} from '@angular/material';
-import {FilterDialogComponent} from './filter-dialog/filter-dialog.component';
+import { MatBottomSheetRef } from '@angular/material';
+import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
 
 @Component({
   selector: 'app-bills-filter',
@@ -54,6 +54,13 @@ export class BillsFilterComponent implements OnInit {
 
   getFilters(): void {
     this.filter = this.tagsService.currentFilter;
+    this.tagsService.currentFilter.subscribe(fil => {
+      // this.categoryList = this.categoryList.forEach(cat => {
+      console.log(this.categoryList);
+      console.log(fil.categoryList);
+
+      // })
+    });
   }
 
   openLink(event: MouseEvent): void {

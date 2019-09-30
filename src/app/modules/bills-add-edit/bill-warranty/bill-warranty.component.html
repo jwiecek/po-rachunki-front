@@ -1,0 +1,9 @@
+<section>
+  <h2>Okres gwarancji</h2>
+  <p>{{selectedWarrantyLabel}} {{time}}</p>
+  <div>
+    <mat-slider color="primary" [value]="getSelectedWarrantyValue()"
+                [max]="54" [min]="0" [step]="1" [thumbLabel]="true" (input)="getNewWarranty($event)">
+    </mat-slider>
+  </div>
+</section>

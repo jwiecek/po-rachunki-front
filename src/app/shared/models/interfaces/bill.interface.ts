@@ -1,10 +1,10 @@
 export interface Bill {
-  _id: string;
+  _id?: string;
   imageBillPath?: string;
   imageProductPath?: string;
   price: number;
   purchaseDate: string;
-  purchaseType: string[];
+  purchaseType: string;
   shop: string;
   product: string[];
   brand: string[];
