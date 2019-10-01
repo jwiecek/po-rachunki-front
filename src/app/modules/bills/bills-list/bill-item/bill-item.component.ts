@@ -7,6 +7,7 @@ import { Router} from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { TagsService } from '../../../../core/services/tags.service';
 import { BillsService } from '../../../../core/services/bills.service';
+import { HelpersData } from '../../../../shared/models/helpers';
 
 @Component({
   selector: 'app-bill-item',
@@ -18,18 +19,13 @@ export class BillItemComponent implements OnInit {
   @Input() bill: Bill;
   @Input() elementsView;
   @Output() removeBill: EventEmitter<string> = new EventEmitter<string>();
-
   public isMobile: boolean;
-  private today;
-  private todayPlusOneMonth;
-  private todayPlusOneYear;
   public filter: Observable<FilterInterface>;
 
   constructor(private tagsService: TagsService, private billsService: BillsService, private router: Router, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.onResize();
-    this.getDates();
     this.filter = this.tagsService.currentFilter;
   }
 
@@ -39,15 +35,9 @@ export class BillItemComponent implements OnInit {
     this.isMobile = innerWidth < 600;
   }
 
-  getDates() {
-    this.today = moment().format('MM-DD-YYYY');
-    this.todayPlusOneMonth = moment(this.today).add(1, 'months').format('MM-DD-YYYY');
-    this.todayPlusOneYear = moment(this.today).add(1, 'year').format('MM-DD-YYYY');
-  }
-
   checkIfWarrantyOneMonth(bill: Bill): boolean {
-    return moment(bill.warrantyEndDate).format('MM-DD-YYYY') > this.today && moment(bill.warrantyEndDate)
-      .format('MM-DD-YYYY') < this.todayPlusOneMonth;
+    return moment(bill.warrantyEndDate).format('MM-DD-YYYY') > HelpersData.today() && moment(bill.warrantyEndDate)
+      .format('MM-DD-YYYY') < HelpersData.todayPlusOneMonth();
   }
 
   editBill(bill: Bill) {

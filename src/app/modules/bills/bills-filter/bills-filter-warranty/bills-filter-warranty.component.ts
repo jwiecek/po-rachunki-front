@@ -4,6 +4,7 @@ import {WarrantyOptionsEnum} from '../../../../shared/models/enums/warranty-opti
 import {FilterInterface} from '../../../../shared/models/interfaces/filter.interface';
 import {TagsService} from '../../../../core/services/tags.service';
 import * as moment from 'moment';
+import { HelpersData } from '../../../../shared/models/helpers';
 
 @Component({
   selector: 'app-bills-filter-warranty',
@@ -36,20 +37,16 @@ export class BillsFilterWarrantyComponent implements OnInit {
     }
     this.filters.selectedWarranty = option;
 
-    const today = moment().format('MM-DD-YYYY');
-    const todayPlusOneMonth = moment(today).add(1, 'months').format('MM-DD-YYYY');
-    const todayPlusOneYear = moment(today).add(1, 'year').format('MM-DD-YYYY');
-
     if (this.filters.selectedWarranty === WarrantyOptionsEnum.OVERDUE) {
-      this.filters.warrantyTo = today;
+      this.filters.warrantyTo = HelpersData.today();
     }
     if (this.filters.selectedWarranty === WarrantyOptionsEnum.END_IN_ONE_MONTH) {
-      this.filters.warrantyFrom = today;
-      this.filters.warrantyTo = todayPlusOneMonth;
+      this.filters.warrantyFrom = HelpersData.today();
+      this.filters.warrantyTo = HelpersData.todayPlusOneMonth();
     }
     if (this.filters.selectedWarranty === WarrantyOptionsEnum.END_IN_ONE_YEAR) {
-      this.filters.warrantyFrom = today;
-      this.filters.warrantyTo = todayPlusOneYear;
+      this.filters.warrantyFrom = HelpersData.today();
+      this.filters.warrantyTo = HelpersData.todayPlusOneYear();
     }
     if (this.filters.selectedWarranty === WarrantyOptionsEnum.RANGE) {
       this.filters.warrantyFrom = moment(this.filters.warrantyFrom).format('MM-DD-YYYY');
