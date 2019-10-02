@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TagsService } from '../../../../core/services/tags.service';
 import { FilterInterface } from '../../../../shared/models/interfaces/filter.interface';
 import { Tag } from '../../../../shared/models/interfaces/tag.interface';
+import {WarrantyOptionsEnum} from '../../../../shared/models/enums/warranty-option.enum';
 
 @Component({
   selector: 'app-bills-filter-selected-list',
@@ -37,7 +38,9 @@ export class BillsFilterSelectedListComponent {
         this.tagsService.filter.next(this.filter);
         break;
       case 'warranty':
-        this.filter.selectedWarranty = null;
+        this.filter.selectedWarranty = WarrantyOptionsEnum.NONE;
+        this.filter.warrantyFrom = null;
+        this.filter.warrantyTo = null;
         this.tagsService.filter.next(this.filter);
         break;
     }

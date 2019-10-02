@@ -22,7 +22,7 @@
     <mat-chip-list *ngIf="filter.selectedWarranty && filter.selectedWarranty !== 'ignoruj'" aria-label="price tags">
       <div class="filter-list__chip">
         <span>Pozostało gwarancji:</span>
-        <mat-chip [removable]="true" (removed)="removeFilter(filter.selectedWarranty,'warranty')">
+        <mat-chip [removable]="true" (removed)="removeFilter(filter.selectedWarranty, 'warranty')">
           {{filter.selectedWarranty}}
           <mat-icon matChipRemove>cancel</mat-icon>
         </mat-chip>

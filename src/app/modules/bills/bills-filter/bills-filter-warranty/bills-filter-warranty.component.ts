@@ -1,8 +1,8 @@
-import {ChangeDetectionStrategy, Component, HostListener, Input, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-import {WarrantyOptionsEnum} from '../../../../shared/models/enums/warranty-option.enum';
-import {FilterInterface} from '../../../../shared/models/interfaces/filter.interface';
-import {TagsService} from '../../../../core/services/tags.service';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { WarrantyOptionsEnum } from '../../../../shared/models/enums/warranty-option.enum';
+import { FilterInterface } from '../../../../shared/models/interfaces/filter.interface';
+import { TagsService } from '../../../../core/services/tags.service';
 import * as moment from 'moment';
 import { HelpersData } from '../../../../shared/models/helpers';
 
@@ -10,12 +10,11 @@ import { HelpersData } from '../../../../shared/models/helpers';
   selector: 'app-bills-filter-warranty',
   templateUrl: './bills-filter-warranty.component.html',
   styleUrls: ['./bills-filter-warranty.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BillsFilterWarrantyComponent implements OnInit {
 
   @Input() filters: FilterInterface;
-  isMobile: boolean;
+  public isMobile: boolean;
   public warrantyForm: FormGroup;
   public warrantyOptions = [];
 

@@ -29,7 +29,7 @@ export class BillsFilterComponent implements OnInit {
 
   ngOnInit() {
     this.getTags();
-    this.getFilters();
+    this.filter = this.tagsService.currentFilter;
     this.elementsView = this.billsService.elementsView;
     this.resultCount = this.billsService.currentResultCount;
     this.onResize();
@@ -49,17 +49,6 @@ export class BillsFilterComponent implements OnInit {
             return category;
           });
         }
-    });
-  }
-
-  getFilters(): void {
-    this.filter = this.tagsService.currentFilter;
-    this.tagsService.currentFilter.subscribe(fil => {
-      // this.categoryList = this.categoryList.forEach(cat => {
-      console.log(this.categoryList);
-      console.log(fil.categoryList);
-
-      // })
     });
   }
 

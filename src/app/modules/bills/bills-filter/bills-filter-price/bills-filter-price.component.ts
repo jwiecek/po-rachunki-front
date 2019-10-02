@@ -1,5 +1,4 @@
-import {Component, HostListener, Input, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {Component, Input} from '@angular/core';
 import {FilterInterface} from '../../../../shared/models/interfaces/filter.interface';
 import {TagsService} from '../../../../core/services/tags.service';
 
@@ -8,35 +7,15 @@ import {TagsService} from '../../../../core/services/tags.service';
   templateUrl: './bills-filter-price.component.html',
   styleUrls: ['./bills-filter-price.component.scss']
 })
-export class BillsFilterPriceComponent implements OnInit {
+export class BillsFilterPriceComponent{
 
   @Input() filters: FilterInterface;
-  isMobile: boolean;
-  public dateForm: FormGroup;
+  public isMobile: boolean;
 
   constructor(private tagsService: TagsService) { }
 
-  ngOnInit() {
-    this.onResize();
-    this.dateForm = new FormGroup({
-      fromDate: new FormControl(),
-      toDate: new FormControl()
-    });
-  }
-
-  setRange(type) {
-    if (type === 'fromDate') {
-      this.filters.purchaseDateFrom = this.dateForm.get('fromDate').value;
-    } else if (type === 'toDate') {
-      this.filters.purchaseDateTo = this.dateForm.get('toDate').value;
-    }
+  setPrice(): void {
     this.tagsService.filter.next(this.filters);
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize() {
-    const innerWidth = window.innerWidth;
-    this.isMobile = innerWidth < 660;
   }
 
 }
