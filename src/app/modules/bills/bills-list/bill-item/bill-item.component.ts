@@ -4,7 +4,6 @@ import * as moment from 'moment';
 import { FilterInterface } from '../../../../shared/models/interfaces/filter.interface';
 import { Observable } from 'rxjs';
 import { Router} from '@angular/router';
-import { MatDialog } from '@angular/material';
 import { TagsService } from '../../../../core/services/tags.service';
 import { BillsService } from '../../../../core/services/bills.service';
 import { HelpersData } from '../../../../shared/models/helpers';
@@ -22,7 +21,7 @@ export class BillItemComponent implements OnInit {
   public isMobile: boolean;
   public filter: Observable<FilterInterface>;
 
-  constructor(private tagsService: TagsService, private billsService: BillsService, private router: Router, public dialog: MatDialog) { }
+  constructor(private tagsService: TagsService, private billsService: BillsService, private router: Router) { }
 
   ngOnInit() {
     this.onResize();
@@ -40,11 +39,11 @@ export class BillItemComponent implements OnInit {
       .format('MM-DD-YYYY') < HelpersData.todayPlusOneMonth();
   }
 
-  editBill(bill: Bill) {
+  editBill(bill: Bill): void {
     this.router.navigate(['./edit/', bill._id]);
   }
 
-  removeSelectedBill(event: MouseEvent, id: string) {
+  removeSelectedBill(event: MouseEvent, id: string): void {
     event.stopPropagation();
     if (id) {
       this.removeBill.emit(id);

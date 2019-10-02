@@ -1,7 +1,7 @@
 <section fxLayout="column" class="bills__container">
   <div fxLayout="row" fxLayoutAlign="start center" class="bills__header">
     <h1>Moje rachunki ({{resultCount | async}})</h1>
-    <button *ngIf="!isMobile"  mat-stroked-button class="accent-button" routerLink="/create">
+    <button *ngIf="!isMobile" mat-stroked-button class="accent-button bills__button--create" routerLink="/create">
       <mat-icon>add_circle</mat-icon>
       Dodaj rachunek
     </button>

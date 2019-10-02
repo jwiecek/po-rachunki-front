@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { BillsService } from '../../src/app/core/services/bills.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { environment } from '../../src/environments/environment';
 import { Bill } from '../../src/app/shared/models/interfaces/bill.interface';
+import { environment } from '../../src/environments/environment';
 
 
 describe('BillsService', () => {
@@ -63,15 +63,6 @@ describe('BillsService', () => {
     expect(service).toBeDefined();
   });
 
-  it('should get the bill by id', () => {
-    service.getBillById('5').subscribe((data: any) => {
-      expect(data.shop).toBe('Media Markt');
-    });
-    const req = httpMock.expectOne(`${environment.API_URL}/bills/find/5`, 'call to api');
-    expect(req.request.method).toBe('GET');
-    req.flush(response[0]);
-  });
-
   it('should get all bills', () => {
     service.getBills().subscribe((data: any) => {
       expect(data[0].shop).toBe('Media Markt');
@@ -79,6 +70,15 @@ describe('BillsService', () => {
     const req = httpMock.expectOne(`${environment.API_URL}/bills/allUserBills`);
     expect(req.request.method).toBe('GET');
     req.flush(response);
+  });
+
+  it('should get the bill by id', () => {
+    service.getBillById('5').subscribe((data: any) => {
+      expect(data.shop).toBe('Media Markt');
+    });
+    const req = httpMock.expectOne(`${environment.API_URL}/bills/find/5`, 'call to api');
+    expect(req.request.method).toBe('GET');
+    req.flush(response[0]);
   });
 
   it('should create the correct new bill', () => {
@@ -97,13 +97,11 @@ describe('BillsService', () => {
       console.log(data);
       expect(data).toBe('5');
     });
-
     const req = httpMock.expectOne(
       `${environment.API_URL}/bills/delete/5`,
       'delete to api'
     );
     expect(req.request.method).toBe('DELETE');
-
     req.flush('5');
   });
 
@@ -111,15 +109,12 @@ describe('BillsService', () => {
     service.updateBill(response[0], '5').subscribe((data: Bill) => {
       expect(data.shop).toBe('Media Markt');
     });
-
     const req = httpMock.expectOne(
       `${environment.API_URL}/bills/update?id=5`,
       'put to api'
     );
     expect(req.request.method).toBe('PUT');
-
     req.flush(response[0]);
-
   });
 
 });
