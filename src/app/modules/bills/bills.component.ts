@@ -1,6 +1,6 @@
-import {Component, HostListener, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
-import {BillsService} from '../../core/services/bills.service';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { BillsService } from '../../core/services/bills.service';
 
 @Component({
   selector: 'app-bills',

@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { BillsService } from '../../../core/services/bills.service';
 import { Bill } from '../../../shared/models/interfaces/bill.interface';
 import { Subscription } from 'rxjs';
@@ -11,7 +11,7 @@ import { Tag } from '../../../shared/models/interfaces/tag.interface';
   templateUrl: './bills-list.component.html',
   styleUrls: ['./bills-list.component.scss']
 })
-export class BillsListComponent implements OnInit {
+export class BillsListComponent implements OnInit, OnDestroy {
 
   public bills: Bill[] = [];
   public elementsView;
@@ -83,5 +83,9 @@ export class BillsListComponent implements OnInit {
   onResize() {
     const innerWidth = window.innerWidth;
     this.isMobile = innerWidth < 600;
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 }

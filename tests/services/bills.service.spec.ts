@@ -94,7 +94,6 @@ describe('BillsService', () => {
 
   it('should delete bill', () => {
     service.removeBill('5').subscribe((data: Bill) => {
-      console.log(data);
       expect(data).toBe('5');
     });
     const req = httpMock.expectOne(

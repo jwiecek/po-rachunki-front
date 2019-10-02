@@ -24,7 +24,7 @@ import {
     MatCheckboxModule,
     MatChipsModule,
     MatDatepickerModule,
-    MatFormFieldModule,
+    MatNativeDateModule,
     MatInputModule,
     MatIconModule,
     MatAutocompleteModule,
@@ -32,13 +32,13 @@ import {
     MatExpansionModule,
     MatDividerModule,
     MatRadioModule,
-    MatNativeDateModule,
     MatListModule,
     MatSliderModule,
     MatDialogModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    MatFormFieldModule
   ],
   declarations: [],
-  providers: [{ provide: MatBottomSheetRef, useValue: {} }],
+  providers: [{ provide: MatBottomSheetRef, useValue: {} }, MatDatepickerModule],
 })
 export class MaterialModule { }

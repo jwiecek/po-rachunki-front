@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BillsService } from '../../core/services/bills.service';
 import { AuthService } from '../../core/services/auth.service';
@@ -14,7 +14,7 @@ import { Bill } from '../../shared/models/interfaces/bill.interface';
   styleUrls: ['./bills-add-edit.component.scss']
 })
 export class BillsAddEditComponent implements OnInit {
-  private tags: Tag[];
+  public tags: Tag[];
   public billForm: FormGroup;
   private billId: string;
   private currentUser = this.authService.userId;
@@ -28,21 +28,21 @@ export class BillsAddEditComponent implements OnInit {
   public tagsProductByType: Tag[];
   public tagsShop: Tag[];
   public tagsShopByType: Tag[];
-  private selectedWarrantyMonth: number;
+  public selectedWarrantyMonth: number;
   private imagePath: Blob = null;
   public selectedBillPhotoUrl: string;
-  private selectedProducts: string[];
-  private selectedShops: string[];
-  private selectedBrands: string[];
+  public selectedProducts: string[];
+  public selectedShops: string[];
+  public selectedBrands: string[];
   public mode: string;
   public selectedWarrantyLabel;
-  private imageBillPath: string;
-
+  public imageBillPath: string;
+  public buttonText: string;
 
   constructor(private billsService: BillsService,
               private authService: AuthService,
               private tagsService: TagsService,
-              private router: Router, private ref: ChangeDetectorRef,
+              private router: Router,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -50,6 +50,7 @@ export class BillsAddEditComponent implements OnInit {
       if (params.billId) {
         this.mode = 'edit';
         this.headerName = 'Edytuj: ';
+        this.buttonText = 'Zapisz rachunek';
         this.billId = params.billId;
         const getTags = this.tagsService.getTags();
         const getSelectedBill = this.billsService.getBillById(this.billId);
@@ -59,6 +60,7 @@ export class BillsAddEditComponent implements OnInit {
         });
       } else {
         this.mode = 'create';
+        this.buttonText = 'Dodaj rachunek';
         this.headerName = 'Dodaj rachunek';
         this.getTags();
       }
@@ -106,7 +108,6 @@ export class BillsAddEditComponent implements OnInit {
     this.groupTagsBySelectedPurchaseTypes();
   }
 
-
   getTags(): void {
     this.tagsService.getTags().subscribe((tags: Tag[]) => {
       this.filterTags(tags);
@@ -135,7 +136,6 @@ export class BillsAddEditComponent implements OnInit {
 
   onSaveBill(): void {
     if (this.billForm.invalid) {
-      console.log(this.billForm);
       return;
     }
     const newBill = this.billForm.value;

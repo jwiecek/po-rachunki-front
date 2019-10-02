@@ -1,12 +1,12 @@
-<mat-toolbar color="primary" *ngIf="userIsAuthenticated | async" fxFlex>
+<mat-toolbar color="primary" *ngIf="userIsAuthenticated | async" fxFlex class="toolbar">
   <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex>
     <div routerLink="/" (click)="refresh()">
       <span class="logo"><span>po</span>RACHUNKI</span>
     </div>
     <div fxLayout="row" fxLayoutAlign="space-between center">
       <app-bill-search></app-bill-search>
-      <button *ngIf="!isMobile" mat-button color="primary" mat-flat-button routerLink="/tags">Moje tagi</button>
-      <button mat-button color="primary" mat-flat-button (click)="onLogout()">Wyloguj</button>
+      <button *ngIf="!isMobile" mat-button color="primary" mat-flat-button class="toolbar__button--tags" routerLink="/tags">Moje tagi</button>
+      <button mat-button color="primary" mat-flat-button (click)="onLogout()" class="toolbar__button--logout">Wyloguj</button>
     </div>
   </div>
 </mat-toolbar>

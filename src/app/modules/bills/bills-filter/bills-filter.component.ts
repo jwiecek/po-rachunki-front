@@ -21,7 +21,6 @@ export class BillsFilterComponent implements OnInit {
   public resultCount: Observable<number>;
   public isMobile: boolean;
 
-
   constructor(
     private billsService: BillsService,
     private tagsService: TagsService,

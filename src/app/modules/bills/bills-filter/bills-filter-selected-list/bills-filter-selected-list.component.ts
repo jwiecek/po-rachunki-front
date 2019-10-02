@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TagsService } from '../../../../core/services/tags.service';
 import { FilterInterface } from '../../../../shared/models/interfaces/filter.interface';
 import { Tag } from '../../../../shared/models/interfaces/tag.interface';
-import {WarrantyOptionsEnum} from '../../../../shared/models/enums/warranty-option.enum';
+import { WarrantyOptionsEnum } from '../../../../shared/models/enums/warranty-option.enum';
 
 @Component({
   selector: 'app-bills-filter-selected-list',
