@@ -11,8 +11,6 @@ import { TagsService } from '../../../core/services/tags.service';
 export class TagsListComponent implements OnInit {
 
   public tagsPurchaseType: Tag[] = [];
-  public tagsPrice: Tag[] = [];
-  public tagsWarranty: Tag[] = [];
   public tagsProduct = [];
   public tagsBrand = [];
   public tagsShop = [];
@@ -29,13 +27,8 @@ export class TagsListComponent implements OnInit {
     });
   }
 
-  filterTags(tags: Tag[]): void {
+  filterTags(tags): void {
     this.tagsPurchaseType = tags.filter((tag: Tag) => tag.type === 'purchaseType');
-    this.tagsPrice = tags.filter((tag: Tag) => tag.type === 'price');
-    this.tagsPrice = this.tagsPrice.sort(
-      (a, b) => parseFloat(a.label.replace(/\D/g, '')) - parseFloat(b.label.replace(/\D/g, ''))
-    );
-    this.tagsWarranty = tags.filter((tag: Tag) => tag.type === 'warranty');
     this.tagsPurchaseType.forEach((tag: Tag, index: number) => {
       this.tagsProduct[index] = tags.filter(t => t.type === 'product' && t.belongToLabel.toString() === tag.label);
       this.tagsBrand[index] = tags.filter(t => t.type === 'brand' && t.belongToLabel.toString() === tag.label);
