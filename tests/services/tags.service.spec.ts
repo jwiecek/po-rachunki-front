@@ -96,12 +96,4 @@ describe('TagsService', () => {
     req.flush('1');
   });
 
-  it('should filter tags', () => {
-    service.filterBill('Martens').subscribe((data: string[]) => {
-      expect(data).toBe('Dr. Martens');
-    });
-    const req = httpMock.expectOne(`${environment.API_URL}/bills/filter/Martens`);
-    expect(req.request.method).toBe('GET');
-    req.flush('Martens');
-  });
 });

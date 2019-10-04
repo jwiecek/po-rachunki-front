@@ -3,29 +3,14 @@ import { BillsService } from '../../src/app/core/services/bills.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Bill } from '../../src/app/shared/models/interfaces/bill.interface';
 import { environment } from '../../src/environments/environment';
+import { mockedBills } from '../mockedData';
 
 
 describe('BillsService', () => {
   let service: BillsService;
   let httpMock: HttpTestingController;
 
-  const response: Bill[] = [{
-    brand: ['Nikon'],
-    createdAt: '2019-05-29T12:36:08.903Z',
-    createdById: '5cde6a1561298b08dea45d58',
-    description: 'damski',
-    imageBillPath: '3cde8b107299473d4c102b7c22b6a2e37d.jpg',
-    price: 3200,
-    product: ['Aparat'],
-    purchaseDate: '2019-05-03T00:00:00.000Z',
-    purchaseType: 'Elektronika',
-    shop: 'Media Markt',
-    updatedAt: '2019-09-26T06:55:37.707Z',
-    updatedById: '5cde6a1561298b08dea45d58',
-    warranty: 180,
-    warrantyEndDate: '2034-05-03T00:00:00.000Z',
-    _id: '5'
-  }];
+  const response: Bill[] = mockedBills;
 
   const newBill: Bill = {
     brand: ['Nikon'],
@@ -43,7 +28,6 @@ describe('BillsService', () => {
     warranty: 180,
     warrantyEndDate: '2034-05-03T00:00:00.000Z',
   };
-
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -114,6 +98,16 @@ describe('BillsService', () => {
     );
     expect(req.request.method).toBe('PUT');
     req.flush(response[0]);
+  });
+
+
+  it('should filter tags', () => {
+    service.filterBill('Martens').subscribe((data: string[]) => {
+      expect(data).toBe('Dr. Martens');
+    });
+    const req = httpMock.expectOne(`${environment.API_URL}/bills/filter/Martens`);
+    expect(req.request.method).toBe('GET');
+    req.flush('Martens');
   });
 
 });

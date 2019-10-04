@@ -4,7 +4,7 @@ import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {RouterTestingModule} from '@angular/router/testing';
 import {TagsListComponent} from '../../src/app/modules/tags/tags-list/tags-list.component';
 import {Tag} from '../../src/app/shared/models/interfaces/tag.interface';
-import { mockedTags } from '../mockedData';
+import {mockedTags} from '../mockedData';
 
 describe('TagsListComponent', () => {
   let component: TagsListComponent;

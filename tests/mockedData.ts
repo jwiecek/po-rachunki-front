@@ -1,5 +1,5 @@
-import {Tag} from '../src/app/shared/models/interfaces/tag.interface';
-import {Bill} from '../src/app/shared/models/interfaces/bill.interface';
+import { Tag } from '../src/app/shared/models/interfaces/tag.interface';
+import { Bill } from '../src/app/shared/models/interfaces/bill.interface';
 
 export const mockedTags: Tag[] = [
   {belongToLabel: [], selected: false, createdById: '5cde6a1561298b08dea45d58', label: 'Dom i ogród', type: 'purchaseType', _id: '1'},
