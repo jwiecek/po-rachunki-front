@@ -6,6 +6,7 @@ import { Tag } from '../../../shared/models/interfaces/tag.interface';
 import { TagsService } from '../../../core/services/tags.service';
 import { MatBottomSheetRef } from '@angular/material';
 import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
+import { ElementView } from '../../../shared/models/interfaces/elementView.interface';
 
 @Component({
   selector: 'app-bills-filter',
@@ -17,7 +18,7 @@ export class BillsFilterComponent implements OnInit {
   public categoryList;
   public tags: Tag[];
   private filter: Observable<FilterInterface>;
-  public elementsView;
+  public elementsView: Observable<ElementView>;
   public resultCount: Observable<number>;
   public isMobile: boolean;
 

@@ -7,11 +7,12 @@ import { MatSliderChange } from '@angular/material';
   styleUrls: ['./bill-warranty.component.scss']
 })
 export class BillWarrantyComponent {
-  private time: string;
+  public time: string;
   @Input() selectedWarrantyMonth: number;
   public selectedWarrantyLabel: number | string = 0;
   public selectedWarrantyValue = 0;
   @Output() selectedWarranty = new EventEmitter<number | string>();
+  public html: HTMLCollection = document.getElementsByClassName('mat-slider-thumb-label-text');
 
   getSelectedWarrantyValue(): number {
     if (this.selectedWarrantyMonth) {
@@ -33,9 +34,7 @@ export class BillWarrantyComponent {
     if (this.selectedWarrantyValue <= 24) {
       this.selectedWarrantyLabel = this.selectedWarrantyValue;
       this.selectedWarrantyMonth = this.selectedWarrantyLabel;
-      document.getElementsByClassName(
-        'mat-slider-thumb-label-text'
-      )[0].innerHTML = this.selectedWarrantyLabel.toString();
+      this.changeInnerHtml(this.selectedWarrantyLabel.toString());
       this.time = 'miesięcy';
       if (this.selectedWarrantyValue === 1) {
         this.time = 'miesiąc';
@@ -50,9 +49,8 @@ export class BillWarrantyComponent {
       this.time = 'lat';
       this.selectedWarrantyLabel = this.selectedWarrantyValue - 22;
       this.selectedWarrantyMonth = this.selectedWarrantyLabel * 12;
-      document.getElementsByClassName(
-        'mat-slider-thumb-label-text'
-      )[0].innerHTML = this.selectedWarrantyLabel.toString();
+      this.changeInnerHtml(this.selectedWarrantyLabel.toString());
+
       if (
         (this.selectedWarrantyValue >= 24 && this.selectedWarrantyValue < 27) ||
         (this.selectedWarrantyValue >= 44 && this.selectedWarrantyValue < 47)
@@ -62,8 +60,12 @@ export class BillWarrantyComponent {
       if (this.selectedWarrantyValue >= 54) {
         this.selectedWarrantyLabel = 'dożywotnio';
         this.time = '';
-        document.getElementsByClassName('mat-slider-thumb-label-text')[0].innerHTML = '*';
+        this.changeInnerHtml('*');
       }
     }
+  }
+
+  changeInnerHtml(warranty: string): void {
+    this.html[0].innerHTML = warranty;
   }
 }

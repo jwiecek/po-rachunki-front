@@ -1,10 +1,11 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { BillsService } from '../../../core/services/bills.service';
 import { Bill } from '../../../shared/models/interfaces/bill.interface';
-import { Subscription } from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import { FilterInterface } from '../../../shared/models/interfaces/filter.interface';
 import { TagsService } from '../../../core/services/tags.service';
 import { Tag } from '../../../shared/models/interfaces/tag.interface';
+import { ElementView } from '../../../shared/models/interfaces/elementView.interface';
 
 @Component({
   selector: 'app-bills-list',
@@ -14,7 +15,7 @@ import { Tag } from '../../../shared/models/interfaces/tag.interface';
 export class BillsListComponent implements OnInit, OnDestroy {
 
   public bills: Bill[] = [];
-  public elementsView;
+  public elementsView: Observable<ElementView>;
   private subscriptions: Subscription = new Subscription();
   private filters: FilterInterface;
   public isMobile: boolean;

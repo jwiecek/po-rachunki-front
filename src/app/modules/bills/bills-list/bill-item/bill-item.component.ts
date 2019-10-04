@@ -7,6 +7,7 @@ import { Router} from '@angular/router';
 import { TagsService } from '../../../../core/services/tags.service';
 import { BillsService } from '../../../../core/services/bills.service';
 import { HelpersData } from '../../../../shared/models/helpers';
+import { ElementView } from '../../../../shared/models/interfaces/elementView.interface';
 
 @Component({
   selector: 'app-bill-item',
@@ -16,7 +17,7 @@ import { HelpersData } from '../../../../shared/models/helpers';
 export class BillItemComponent implements OnInit {
 
   @Input() bill: Bill;
-  @Input() elementsView;
+  @Input() elementsView: ElementView;
   @Output() removeBill: EventEmitter<string> = new EventEmitter<string>();
   public isMobile: boolean;
   public filter: Observable<FilterInterface>;
@@ -35,8 +36,9 @@ export class BillItemComponent implements OnInit {
   }
 
   checkIfWarrantyOneMonth(bill: Bill): boolean {
-    return moment(bill.warrantyEndDate).format('MM-DD-YYYY') > HelpersData.today() && moment(bill.warrantyEndDate)
-      .format('MM-DD-YYYY') < HelpersData.todayPlusOneMonth();
+    return moment(bill.warrantyEndDate, 'MM-DD-YYYY').format('MM-DD-YYYY') >
+      HelpersData.today() && moment(bill.warrantyEndDate, 'MM-DD-YYYY').format('MM-DD-YYYY') <
+      HelpersData.todayPlusOneMonth();
   }
 
   editBill(bill: Bill): void {

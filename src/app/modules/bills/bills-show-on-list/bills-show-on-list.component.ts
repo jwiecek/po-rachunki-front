@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { BillsService } from '../../../core/services/bills.service';
+import { ElementView } from '../../../shared/models/interfaces/elementView.interface';
 
 @Component({
   selector: 'app-bills-show-on-list',
@@ -8,7 +9,7 @@ import { BillsService } from '../../../core/services/bills.service';
 })
 export class BillsShowOnListComponent {
 
-  @Input() elementsView;
+  @Input() elementsView: ElementView;
 
   constructor(private billsService: BillsService) { }
 

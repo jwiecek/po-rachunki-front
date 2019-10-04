@@ -29,10 +29,6 @@ export class TagsService {
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-  filterBill(search: string): Observable<Array<string>> {
-    return this.http.get<Array<string>>(`${this.API_URL}/bills/filter/${search}`);
-  }
-
   getTags(): Observable<Tag[]> {
     return this.http.get<Tag[]>(`${this.API_URL}/tags/userTags`);
   }

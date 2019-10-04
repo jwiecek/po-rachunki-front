@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { FilterInterface } from '../../../shared/models/interfaces/filter.interface';
+import { BillsService } from '../../../core/services/bills.service';
 import { TagsService } from '../../../core/services/tags.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { TagsService } from '../../../core/services/tags.service';
   styleUrls: ['./bill-search.component.scss']
 })
 export class BillSearchComponent implements OnInit, OnDestroy {
-  constructor(private tagsService: TagsService) {}
+  constructor(private billsService: BillsService, private tagsService: TagsService) {}
 
   public value;
   public searchOptions = [];
@@ -40,9 +41,7 @@ export class BillSearchComponent implements OnInit, OnDestroy {
 
     this.subscriptions.add(
       this.tagsService.currentFilter.subscribe((filter: FilterInterface) => {
-        setTimeout(() => {
           this.filter = filter;
-        }, 1000);
       })
     );
   }
@@ -50,7 +49,7 @@ export class BillSearchComponent implements OnInit, OnDestroy {
   showSearchOption(text: string): void {
     if (text.length > 1) {
       this.search = text;
-      this.tagsService.filterBill(this.search).subscribe(
+      this.billsService.filterBill(this.search).subscribe(
         res => {
           this.searchOptions = res;
         },
@@ -69,9 +68,11 @@ export class BillSearchComponent implements OnInit, OnDestroy {
   }
 
   getByFilter() {
+    console.log(this.searchOptions);
     this.searchIdList = [];
     if (this.searchOptions) {
       this.searchIdList = this.searchOptions.reduce((arr, option) => option.idList, []);
+      console.log(this.searchIdList);
       this.filter.searchIdList = this.searchIdList;
       this.tagsService.filter.next(this.filter);
     }

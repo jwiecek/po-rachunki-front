@@ -17,7 +17,6 @@ export class BillsAddEditComponent implements OnInit {
   public tags: Tag[];
   public billForm: FormGroup;
   private billId: string;
-  private currentUser = this.authService.userId;
   public maxDate = new Date();
   public headerName: string;
   public tagsPurchaseType: Tag[];
@@ -153,15 +152,10 @@ export class BillsAddEditComponent implements OnInit {
       } else {
         newBill.imageBillPath = this.imageBillPath;
       }
-      newBill.updatedAt = new Date();
-      newBill.updatedById = this.currentUser;
       this.billsService.updateBill(newBill, this.billId).subscribe(() => {
         this.router.navigate(['/']);
       });
     } else {
-      newBill.createdAt = new Date();
-      newBill.updatedAt = '';
-      newBill.createdById = this.currentUser;
       this.billsService.createBill(newBill).subscribe(() => {
         this.router.navigate(['/']);
       });

@@ -13,7 +13,7 @@ export class AuthService {
   private apiUrl = environment.API_URL;
   private isAuthenticated = false;
   private token: string;
-  userId: string;
+  public userId: string;
   private authStatusListener = new Subject<boolean>();
 
   constructor(private http: HttpClient, private router: Router) {}

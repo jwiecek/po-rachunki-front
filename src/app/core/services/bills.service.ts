@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Bill } from '../../shared/models/interfaces/bill.interface';
 import { tap } from 'rxjs/operators';
+import {ElementView} from '../../shared/models/interfaces/elementView.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +14,13 @@ export class BillsService {
   API_URL = environment.API_URL;
   loggedUserId;
 
-  public elementsView = new BehaviorSubject<object>([
-    { price: true },
-    { purchaseType: false },
-    { shop: false },
-    { description: false },
-    { warrantyEndDate: false }
-  ]);
+  public elementsView = new BehaviorSubject<ElementView>({
+    price: true,
+    purchaseType: false,
+    shop: false,
+    description: false,
+    warrantyEndDate: false
+  });
 
   public resultCount = new BehaviorSubject<number>(0);
   public currentResultCount = this.resultCount.asObservable();
@@ -50,11 +51,14 @@ export class BillsService {
 
   createBill(bill: Bill): Observable<Bill> {
     bill.createdById = this.loggedUserId;
+    bill.createdAt = new Date().toString();
+    bill.updatedAt = '';
     return this.http.post<Bill>(`${this.API_URL}/bills/create`, bill);
   }
 
   updateBill(bill: Bill, id: string): Observable<Bill> {
     bill.updatedById = this.loggedUserId;
+    bill.updatedAt = new Date().toString();
     return this.http.put<Bill>(`${this.API_URL}/bills/update?id=${id}`, bill);
   }
 
@@ -64,6 +68,10 @@ export class BillsService {
 
   filterAll(filterObject): Observable<Bill[]> {
     return this.http.post<Bill[]>(`${this.API_URL}/bills/filterAll`, filterObject);
+  }
+
+  filterBill(search: string): Observable<Array<string>> {
+    return this.http.get<Array<string>>(`${this.API_URL}/bills/filter/${search}`);
   }
 
   removeBill(id: string): Observable<Bill> {

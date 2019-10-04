@@ -35,7 +35,7 @@ export class InputChipComponent {
     const input = event.input;
     const value = event.value;
     if ((value || '').trim()) {
-      if (index === 'xxx') {
+      if (index === 'no-index') {
         const newTag = {
           label: value.trim(),
           type: this.tagType,
