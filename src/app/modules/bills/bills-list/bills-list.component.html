@@ -1,6 +1,7 @@
 <section class="bill-list__container">
   <div #target></div>
-  <app-bills-filter-selected-list [filter]="filters" [selectedCategoryList]="selectedCategory" (getByFilter)="filterBills()"></app-bills-filter-selected-list>
+  <app-bills-filter-selected-list [filter]="filters" [selectedCategoryList]="selectedCategory"
+                                  (getByFilter)="filterBills()"></app-bills-filter-selected-list>
 
   <div *ngIf="bills.length; else noItem">
     <app-bill-item *ngFor="let bill of bills; trackBy: trackById" [bill]="bill" [elementsView]="elementsView | async"
@@ -13,7 +14,7 @@
     </button>
   </div>
   <ng-template #noItem>
-    <div class="bill-list__no-result-container">
+    <div class="no-result-container">
       brak rachunków
     </div>
   </ng-template>

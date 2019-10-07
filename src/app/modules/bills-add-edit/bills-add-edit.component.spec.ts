@@ -2,12 +2,12 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {RouterTestingModule} from '@angular/router/testing';
-import {mockedTags} from '../mockedData';
-import {Tag} from '../../src/app/shared/models/interfaces/tag.interface';
-import {BillsAddEditComponent} from '../../src/app/modules/bills-add-edit/bills-add-edit.component';
+import {mockedTags} from '../../../../tests/mockedData';
+import {Tag} from '../../shared/models/interfaces/tag.interface';
+import {BillsAddEditComponent} from './bills-add-edit.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatDatepickerModule, MatNativeDateModule} from '@angular/material';
-import {mockedBills} from '../mockedData';
+import {mockedBills} from '../../../../tests/mockedData';
 
 
 describe('BillsAddEditComponent', () => {
@@ -108,5 +108,11 @@ describe('BillsAddEditComponent', () => {
     component.selectTag(mockedTags[10], true);
     expect(component.selectedBrands).toEqual(['Sony']);
   });
+
+  it('should defined billForm onInit', () => {
+    component.ngOnInit();
+    expect(component.billForm).toBeDefined();
+  });
+
 });
 

@@ -10,7 +10,7 @@
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 1.6rem;
   line-height: 3rem;
   font-weight: bold;
   color: $font-color;
@@ -34,7 +34,7 @@ p {
 a {
   color: $primary-color;
   font-size: 0.9rem;
-  text-decoration: underline;
+  text-decoration: none;
   cursor: pointer;
 
   &:hover {
@@ -46,7 +46,7 @@ a {
   color: $primary-color;
 }
 
-@media only screen and (min-width: $md) {
+@media only screen and (max-width: $md) {
   h1 {
     font-size: 1.5rem;
     font-weight: bold;
@@ -55,4 +55,14 @@ a {
     font-size: 1rem;
     font-weight: bold;
   }
+
+  p {
+    font-size: 1rem;
+  }
+}
+
+
+/// material
+.mat-expansion-panel, .mat-card, .mat-list {
+  color: $font-color;
 }

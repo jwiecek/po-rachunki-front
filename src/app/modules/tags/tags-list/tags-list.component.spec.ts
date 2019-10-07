@@ -2,9 +2,9 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {RouterTestingModule} from '@angular/router/testing';
-import {TagsListComponent} from '../../src/app/modules/tags/tags-list/tags-list.component';
-import {Tag} from '../../src/app/shared/models/interfaces/tag.interface';
-import {mockedTags} from '../mockedData';
+import {TagsListComponent} from './tags-list.component';
+import {Tag} from '../../../shared/models/interfaces/tag.interface';
+import {mockedTags} from '../../../../../tests/mockedData';
 
 describe('TagsListComponent', () => {
   let component: TagsListComponent;

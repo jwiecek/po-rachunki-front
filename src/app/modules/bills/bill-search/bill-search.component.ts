@@ -12,7 +12,6 @@ import { TagsService } from '../../../core/services/tags.service';
   styleUrls: ['./bill-search.component.scss']
 })
 export class BillSearchComponent implements OnInit, OnDestroy {
-  constructor(private billsService: BillsService, private tagsService: TagsService) {}
 
   public value;
   public searchOptions = [];
@@ -24,6 +23,16 @@ export class BillSearchComponent implements OnInit, OnDestroy {
   private filter: FilterInterface;
   private subscriptions: Subscription = new Subscription();
   public isMobile: boolean;
+  private searchInput: HTMLCollectionOf<Element>;
+  private logoutButton: HTMLCollectionOf<Element>;
+  private logo: HTMLCollectionOf<Element>;
+  private isInputOpen = true;
+
+  constructor(private billsService: BillsService, private tagsService: TagsService) {
+    this.searchInput = document.getElementsByClassName('mat-form-field-infix');
+    this.logo = document.getElementsByClassName('logo');
+    this.logoutButton = document.getElementsByClassName('toolbar__button--logout');
+  }
 
   ngOnInit() {
     this.onResize();
@@ -83,6 +92,27 @@ export class BillSearchComponent implements OnInit, OnDestroy {
   onResize() {
     const innerWidth = window.innerWidth;
     this.isMobile = innerWidth < 600;
+    if (this.isMobile) {
+      this.isInputOpen = false;
+      this.searchInput[0].setAttribute('style', 'width: 0px;');
+    } else {
+      this.searchInput[0].setAttribute('style', 'width: 240px;');
+    }
+  }
+
+  toggleSearch() {
+    if (this.isMobile) {
+      if (this.isInputOpen) {
+        this.searchInput[0].setAttribute('style', 'width: 0px; transition: width 0.3s ease-out;');
+        this.logo[0].setAttribute('style', 'margin-left: 0; transition: margin-left 0.3s ease-out;');
+        this.logoutButton[0].setAttribute('style', 'margin-right: 0; transition: margin-right 0.3s ease-out;');
+      } else {
+        this.searchInput[0].setAttribute('style', 'width: 240px; transition: width 0.3s ease-out;');
+        this.logo[0].setAttribute('style', 'margin-left: -190px; transition: margin-left 0.3s ease-out;');
+        this.logoutButton[0].setAttribute('style', 'margin-right: -90px; transition: margin-right 0.3s ease-out;');
+      }
+      this.isInputOpen = !this.isInputOpen;
+    }
   }
 
   ngOnDestroy() {

@@ -1,10 +1,12 @@
-<section fxLayout="column" class="bills__container">
-  <div fxLayout="row" fxLayoutAlign="start center" class="bills__header">
+<section fxLayout="column" class="bills">
+  <div fxLayout="row" fxLayout.xs="column" class="basic__container--header">
     <h1>Moje rachunki ({{resultCount | async}})</h1>
     <button *ngIf="!isMobile" mat-stroked-button class="accent-button bills__button--create" routerLink="/create">
       <mat-icon>add_circle</mat-icon>
       Dodaj rachunek
     </button>
+    <div fxFlex=""></div>
+    <app-bills-show-on-list *ngIf="!isMobile" [elementsView]="elementsView | async"></app-bills-show-on-list>
   </div>
   <div fxLayout="row" fxFill>
     <div class="bills__filter" *ngIf="!isMobile">

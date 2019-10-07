@@ -4,12 +4,12 @@
       <h3>Data zakupu</h3>
     </mat-expansion-panel-header>
     <form [formGroup]="dateForm" fxLayout="row" class="input-box">
-      <mat-form-field>
+      <mat-form-field class="input">
         <input matInput [matDatepicker]="pickerFrom" placeholder="od" formControlName="fromDate" (dateChange)="setRange('fromDate')">
         <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
         <mat-datepicker touchUi #pickerFrom></mat-datepicker>
       </mat-form-field>
-      <mat-form-field >
+      <mat-form-field class="input">
         <input matInput [matDatepicker]="pickerTo" placeholder="do" formControlName="toDate" (dateChange)="setRange('toDate')">
         <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
         <mat-datepicker touchUi #pickerTo></mat-datepicker>

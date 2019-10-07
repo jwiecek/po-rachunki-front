@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Bill } from '../../shared/models/interfaces/bill.interface';
 import { tap } from 'rxjs/operators';
-import {ElementView} from '../../shared/models/interfaces/elementView.interface';
+import { ElementView } from '../../shared/models/interfaces/elementView.interface';
 
 @Injectable({
   providedIn: 'root'

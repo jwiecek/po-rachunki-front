@@ -11,6 +11,7 @@ export class BillsComponent implements OnInit {
 
   public isMobile: boolean;
   public resultCount: Observable<number>;
+  public elementsView = this.billsService.elementsView;
 
   constructor(private billsService: BillsService) { }
 

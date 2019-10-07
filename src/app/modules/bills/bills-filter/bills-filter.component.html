@@ -4,7 +4,7 @@
   <app-bills-filter-date [filters]="filter | async"></app-bills-filter-date>
   <app-bills-filter-price [filters]="filter | async"></app-bills-filter-price>
   <app-bills-filter-warranty [filters]="filter | async"></app-bills-filter-warranty>
-  <app-bills-show-on-list [elementsView]="elementsView | async"></app-bills-show-on-list>
+<!--  <app-bills-show-on-list [elementsView]="elementsView | async"></app-bills-show-on-list>-->
   <button *ngIf="isMobile" mat-flat-button color="primary" (click)="openLink($event)">Pokaż wyniki ({{resultCount | async}})</button>
 </section>
 

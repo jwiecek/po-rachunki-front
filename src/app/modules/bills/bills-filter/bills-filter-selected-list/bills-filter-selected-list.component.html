@@ -1,4 +1,5 @@
-<section class="filter-list__container">
+<section class="filter-list__container" *ngIf="selectedCategoryList.length || filter.selectedPriceFrom || filter.selectedPriceTo ||
+filter.selectedWarranty && filter.selectedWarranty !== 'ignoruj' || filter.purchaseDateFrom || filter.purchaseDateTo">
   <div fxLayout="row">
     <mat-chip-list *ngIf="selectedCategoryList.length" aria-label="category tags" class="my-chip-list">
       <div class="filter-list__chip">
@@ -32,7 +33,8 @@
       <div class="filter-list__chip">
         <span>Data zakupu:</span>
         <mat-chip [removable]="true" (removed)="removeFilter(filter, 'purchaseDate')">
-          <span *ngIf="filter.purchaseDateFrom">od {{filter.purchaseDateFrom | date: 'dd.mm.yyyy'}}</span><span *ngIf="filter.purchaseDateTo">do {{filter.purchaseDateTo | date: 'dd.mm.yyyy'}}</span>
+          <span *ngIf="filter.purchaseDateFrom">od {{filter.purchaseDateFrom | date: 'dd.mm.yyyy'}}</span>
+          <span *ngIf="filter.purchaseDateTo">do {{filter.purchaseDateTo | date: 'dd.mm.yyyy'}}</span>
           <mat-icon matChipRemove>cancel</mat-icon>
         </mat-chip>
       </div>

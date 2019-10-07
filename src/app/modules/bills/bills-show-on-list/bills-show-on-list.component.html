@@ -1,18 +1,29 @@
-<h2>Pokaż na liście:</h2>
-<mat-list>
-  <mat-divider></mat-divider>
-  <mat-list-item> <mat-checkbox class="my-checkbox"
-                                (change)="setElementView()" [(ngModel)]="elementsView.purchaseType" color="primary">Kategoria</mat-checkbox></mat-list-item>
-  <mat-divider></mat-divider>
-  <mat-list-item><mat-checkbox
-    (change)="setElementView()" [(ngModel)]="elementsView.description" color="primary">Opis</mat-checkbox></mat-list-item>
-  <mat-divider></mat-divider>
-  <mat-list-item><mat-checkbox
-    (change)="setElementView()" [(ngModel)]="elementsView.shop" color="primary">Sklep</mat-checkbox></mat-list-item>
-  <mat-divider></mat-divider>
-<!--  <div fxLayout="row" *ngIf="isMobile">-->
-<!--    <button mat-stroked-button color="primary" (click)="clearAll()">Usuń zaznaczenie</button>-->
-<!--    <button mat-stroked-button color="primary" (click)="selectAll()">Zaznacz wszystkie</button>-->
-<!--  </div>-->
-  <mat-divider></mat-divider>
-</mat-list>
+<!--<h2>Pokaż na liście:</h2>-->
+<!--<mat-list>-->
+<!--  <mat-divider></mat-divider>-->
+<!--  <mat-list-item> <mat-checkbox class="my-checkbox"-->
+<!--                                (change)="setElementView()" [(ngModel)]="elementsView.purchaseType" color="primary">Kategoria</mat-checkbox></mat-list-item>-->
+<!--  <mat-divider></mat-divider>-->
+<!--  <mat-list-item><mat-checkbox-->
+<!--    (change)="setElementView()" [(ngModel)]="elementsView.description" color="primary">Opis</mat-checkbox></mat-list-item>-->
+<!--  <mat-divider></mat-divider>-->
+<!--  <mat-list-item><mat-checkbox-->
+<!--    (change)="setElementView()" [(ngModel)]="elementsView.shop" color="primary">Sklep</mat-checkbox></mat-list-item>-->
+<!--  <mat-divider></mat-divider>-->
+<!--&lt;!&ndash;  <div fxLayout="row" *ngIf="isMobile">&ndash;&gt;-->
+<!--&lt;!&ndash;    <button mat-stroked-button color="primary" (click)="clearAll()">Usuń zaznaczenie</button>&ndash;&gt;-->
+<!--&lt;!&ndash;    <button mat-stroked-button color="primary" (click)="selectAll()">Zaznacz wszystkie</button>&ndash;&gt;-->
+<!--&lt;!&ndash;  </div>&ndash;&gt;-->
+<!--  <mat-divider></mat-divider>-->
+<!--</mat-list>-->
+
+<section class="show-list">
+  <mat-checkbox class="my-checkbox" (change)="setElementView()" [(ngModel)]="elementsView.purchaseType"
+                color="primary">Kategoria</mat-checkbox>
+  <mat-checkbox (change)="setElementView()" [(ngModel)]="elementsView.description"
+                color="primary">Opis</mat-checkbox>
+  <mat-checkbox (change)="setElementView()" [(ngModel)]="elementsView.shop" color="primary">Sklep</mat-checkbox>
+</section>
+
+
+

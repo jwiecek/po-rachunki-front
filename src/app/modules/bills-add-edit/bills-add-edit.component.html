@@ -1,7 +1,7 @@
-<section class="card__container basic__container">
+<section class="card basic__container">
   <div class="card__header">
+    <a routerLink="/">< powrót do listy</a>
     <h1 class="card__title">
-      <mat-icon class="clickable-item" routerLink="/">chevron_left</mat-icon>
       {{headerName}} <span class="primary__text">{{selectedProducts}} {{selectedBrands}}</span>
     </h1>
   </div>
@@ -14,11 +14,11 @@
     </div>
 
     <div class="pr-20 card__data">
-      <div fxLayout="row" fxLayout.lt-sm="column">
+      <div fxLayout="row" fxLayout.lt-sm="column" class="card__data--inputs">
         <div>
           <h2>Data zakupu</h2>
           <div>
-            <mat-form-field class="short-input">
+            <mat-form-field class="input">
               <input matInput [max]="maxDate"
                      [matDatepicker]="picker"
                      placeholder="Data zakupu"
@@ -31,7 +31,7 @@
         <div>
           <h2>Kwota</h2>
           <div>
-            <mat-form-field class="short-input">
+            <mat-form-field class="input">
               <input matInput placeholder="wpisz kwotę" type="number" formControlName="price">
               <span matSuffix>zł</span>
             </mat-form-field>

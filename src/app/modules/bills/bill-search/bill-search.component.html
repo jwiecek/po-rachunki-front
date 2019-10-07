@@ -1,9 +1,9 @@
-<form [formGroup]="searchForm">
+<form [formGroup]="searchForm" class="search-form">
   <mat-form-field>
     <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value = ''; clearSearchInput()">
     <mat-icon>close</mat-icon>
     </button>
-    <mat-icon class="search" matPrefix>search</mat-icon>
+    <mat-icon class="search" matPrefix (click)="toggleSearch()">search</mat-icon>
     <mat-label [hidden]="isMobile">szukaj</mat-label>
     <input [autofocus]="isMobile" type="text" #searchRef aria-label="search" matInput formControlName="search" [matAutocomplete]="auto" [(ngModel)]="value" >
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="getByFilter()">

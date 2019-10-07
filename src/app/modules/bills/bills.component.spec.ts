@@ -1,11 +1,11 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {BillsComponent} from '../../src/app/modules/bills/bills.component';
+import {BillsComponent} from './bills.component';
 import {Router} from '@angular/router';
 import {RouterTestingModule} from '@angular/router/testing';
-import {BillsFilterComponent} from '../../src/app/modules/bills/bills-filter/bills-filter.component';
-import {BillsListComponent} from '../../src/app/modules/bills/bills-list/bills-list.component';
+import {BillsFilterComponent} from './bills-filter/bills-filter.component';
+import {BillsListComponent} from './bills-list/bills-list.component';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {MaterialModule} from '../../src/app/shared/material.module';
+import {MaterialModule} from '../../shared/material.module';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 describe('BillsComponent', () => {

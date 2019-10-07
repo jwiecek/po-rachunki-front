@@ -2,9 +2,9 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {Router} from '@angular/router';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {RouterTestingModule} from '@angular/router/testing';
-import {MaterialModule} from '../../src/app/shared/material.module';
+import {MaterialModule} from '../../shared/material.module';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import {HeaderComponent} from '../../src/app/core/header/header.component';
+import {HeaderComponent} from './header.component';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;

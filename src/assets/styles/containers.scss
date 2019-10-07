@@ -2,23 +2,26 @@
 @import "breakpoints";
 
 .basic__container {
-  padding: 35px;
+  padding: 40px;
+
+  &--header {
+    margin: 20px;
+  }
 }
 
 @media only screen and (max-width: $xl) {
   .basic__container {
-    padding: 25px;
+    padding: 20px;
+
+    &--header {
+      margin: 10px;
+    }
   }
 }
 
 .no-result-container {
   text-align: center;
   margin-top: 100px;
-}
-
-
-.card {
-  padding: 30px 50px;
 }
 
 .card__header {
